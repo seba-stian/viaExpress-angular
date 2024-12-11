@@ -33,7 +33,7 @@ jobs:
         run: npm run build:prod
       #Route file renaming
       - name: Rename index for routing
-        run: mv dist/viaexpress-angular/index.html dist/viaexpress-angular/404.html
+        run: mv dist/via-express-angular/browser/index.html dist/via-express-angular/browser/404.html
       # Deploy to Github Pages
       - name: Deploy to Pages
         uses: crazy-max/ghaction-github-pages@v4.1.0
