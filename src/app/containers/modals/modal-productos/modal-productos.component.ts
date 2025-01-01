@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-modal-productos',
+  standalone: false,
   templateUrl: './modal-productos.component.html',
   styleUrl: './modal-productos.component.css'
 })

@@ -1,0 +1,10 @@
+
+.zoom {
+    width: 100%; /* La imagen ocupará todo el ancho del contenedor */
+    transition: transform 0.5s ease; /* Transición suave al hacer hover */
+}
+
+/* Efecto zoom al pasar el mouse */
+.zoom:hover {
+    transform: scale(1.2); /* Aumenta el tamaño de la imagen al 120% */
+}
