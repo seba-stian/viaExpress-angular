@@ -2,6 +2,7 @@ import { Directive, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[appRutFormat]',
+  standalone: false
 })
 export class RutFormatDirective {
   @HostListener('input', ['$event'])

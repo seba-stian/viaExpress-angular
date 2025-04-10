@@ -1,8 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
-  standalone: false,
+  standalone: true,
+  imports: [
+          FormsModule,
+          CommonModule
+        ],
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent implements OnInit{

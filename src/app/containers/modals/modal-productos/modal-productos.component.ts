@@ -1,8 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-modal-productos',
-  standalone: false,
+  standalone: true,
+    imports: [
+            FormsModule,
+            CommonModule,
+          ],
   templateUrl: './modal-productos.component.html',
   styleUrl: './modal-productos.component.css'
 })

@@ -1,8 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ModalProductosComponent } from '../../../../containers/modals/modal-productos/modal-productos.component';
 
 @Component({
   selector: 'app-lista-productos',
-  standalone: false,
+  standalone: true,
+  imports: [
+          FormsModule,
+          CommonModule,
+          ModalProductosComponent
+        ],
   templateUrl: './lista-productos.component.html',
   styleUrl: './lista-productos.component.css'
 })

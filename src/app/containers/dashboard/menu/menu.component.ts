@@ -1,8 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-menu',
-  standalone:false,
+  standalone:true,
+  imports: [
+          FormsModule,
+          CommonModule
+        ],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })

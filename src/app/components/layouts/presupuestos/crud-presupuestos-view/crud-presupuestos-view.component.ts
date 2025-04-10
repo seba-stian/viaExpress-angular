@@ -1,11 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
-import { filter } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-crud-presupuestos-view',
-  standalone: false,
+  standalone: true,
+  imports: [
+        RouterOutlet,
+        FormsModule,
+        CommonModule
+      ],
   templateUrl: './crud-presupuestos-view.component.html',
   styleUrl: './crud-presupuestos-view.component.css'
 })
@@ -14,7 +20,10 @@ export class CrudPresupuestosViewComponent implements OnInit{
   mostrarBoton:boolean = true;
   mostrarBotonSiguiente:boolean = true;
   mostrarBotonFinal:boolean = false;
-  selectStepper:boolean = true;
+  selectStepperPersona:boolean = false;
+  selectStepperVehiculo:boolean = false;
+  selectStepperProductos:boolean = false;
+  selectStepperFinal:boolean = false;
 
   constructor(private router: Router){}
 
@@ -24,13 +33,27 @@ export class CrudPresupuestosViewComponent implements OnInit{
     if(this.router.url == '/Presupuesto/Persona')
     {
       this.mostrarBoton = false;
+      this.resetStepper();
+      this.selectStepperPersona = true;
+      console.log('stepper persona');
     }
     if(this.router.url == '/Presupuesto/Productos')
       {
         this.mostrarBoton = true;
         this.mostrarBotonSiguiente = false;
         this.mostrarBotonFinal = true;
+        this.resetStepper();
+        this.selectStepperProductos = true;
+        console.log('stepper Productos');
       }
+  }
+
+  private resetStepper()
+  {
+    this.selectStepperPersona = false;
+    this.selectStepperVehiculo = false;
+    this.selectStepperProductos = false;
+    this.selectStepperFinal = false;
   }
 
   volver()
@@ -38,6 +61,8 @@ export class CrudPresupuestosViewComponent implements OnInit{
     if(this.router.url == '/Presupuesto/Vehiculo')
       {
         this.mostrarBoton = false;
+        this.resetStepper();
+        this.selectStepperPersona = true;
         this.router.navigate(['Presupuesto/Persona']);
       }
     if(this.router.url == '/Presupuesto/Productos')
@@ -45,6 +70,8 @@ export class CrudPresupuestosViewComponent implements OnInit{
         this.mostrarBotonSiguiente = true;
         this.mostrarBotonFinal = false;
         this.mostrarBoton = true;
+        this.resetStepper();
+        this.selectStepperVehiculo = true;
         this.router.navigate(['Presupuesto/Vehiculo']);
       }
   }
@@ -58,6 +85,8 @@ export class CrudPresupuestosViewComponent implements OnInit{
     if(this.router.url == '/Presupuesto/Persona')
       {
         this.mostrarBoton = true;
+        this.resetStepper();
+        this.selectStepperVehiculo = true;
         this.router.navigate(['Presupuesto/Vehiculo']);
       }
     if(this.router.url == '/Presupuesto/Vehiculo')
@@ -65,6 +94,8 @@ export class CrudPresupuestosViewComponent implements OnInit{
         this.mostrarBoton = true;
         this.mostrarBotonSiguiente = false;
         this.mostrarBotonFinal = true;
+        this.resetStepper();
+        this.selectStepperProductos = true;
         this.router.navigate(['Presupuesto/Productos']);
       }
   }  
