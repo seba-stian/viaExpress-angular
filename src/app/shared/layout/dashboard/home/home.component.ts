@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RutaNav } from '../../../models/RutaNav.model';
 import { Router, ActivatedRoute, NavigationEnd, RouterOutlet, RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RutaNav } from '../../../../core/models/RutaNav.model';
 
 @Component({
   selector: 'app-home',

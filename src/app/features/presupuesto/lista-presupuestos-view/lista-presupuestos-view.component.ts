@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DeviceService } from '../../../../providers/Device-Service.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { DeviceService } from '../../../core/models/Device-Service.model';
 
 @Component({
   selector: 'app-lista-presupuestos-view',

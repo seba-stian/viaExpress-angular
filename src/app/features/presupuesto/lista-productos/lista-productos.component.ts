@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ModalProductosComponent } from '../../../../containers/modals/modal-productos/modal-productos.component';
+import { ModalProductosComponent } from '../../../shared/layout/modals/modal-productos/modal-productos.component';
 
 @Component({
   selector: 'app-lista-productos',
