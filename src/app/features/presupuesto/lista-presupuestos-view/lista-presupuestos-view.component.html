@@ -1,5 +1,5 @@
 
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+<div class="relative shadow-md sm:rounded-lg">
     
     <div style="border-left: ridge; margin-top:1%;margin-bottom:1%;">
         <label class="dark:text-white" style="font-size: xx-large; margin-left:10px;">Lista de Presupuestos</label>
@@ -70,26 +70,26 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+        <tr *ngFor="let p of presupuestos" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <td class="w-4 p-4">
                     
                 </td>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    ANTONIO GARCIA
+                    {{ p.NombreUsuarioCompleto }}
                 </th>
                 <td class="px-6 py-4">
-                    Cambio de aceite
+                    {{ p.NombrePresupuesto }}
                 </td>
                 <td class="px-6 py-4">
-                    20-01-2022
+                    {{ p.FechaCreacion }}
                 </td>
                 <td class="px-6 py-4">
-                    $2999
+                    {{ p.TotalPresupuesto }}
                 </td>
 
                 <td class="flex items-center px-6 py-4">
                     <!-- Editar -->
-                    <a href="Presupuesto/Persona" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
+                    <a [routerLink]="['/Presupuesto/Persona']" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
                         <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
                         </svg>
@@ -101,319 +101,14 @@
                         </svg>
                     </a>
                     <!-- Eliminar -->
-                    <a style="cursor: pointer;" data-modal-target="popup-modal-eliminar" data-modal-toggle="popup-modal-eliminar" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group">
+                    <a style="cursor: pointer;" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group">
                         <svg class="text-red-500  dark:text-red-600 group-hover:text-red-300 dark:group-hover:text-red" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
                         </svg>
                     </a>
                 </td>
         </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="w-4 p-4">
-                
-                </td>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    MARIA CARMEN MARTINEZ
-                </th>
-                <td class="px-6 py-4">
-                    Repración de Motor
-                </td>
-                <td class="px-6 py-4">
-                    10-02-2022
-                </td>
-                <td class="px-6 py-4">
-                    $1999
-                </td>
-                <td class="flex items-center px-6 py-4">
-                <a href="Presupuesto/Persona" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
-                        <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
-                        </svg>
-                    </a>
-                    <a href="/src/assets/Documentos/VIAEXPRESS.pdf" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
-                        <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 17v-5h1.5a1.5 1.5 0 1 1 0 3H5m12 2v-5h2m-2 3h2M5 10V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1v6M5 19v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1M10 3v4a1 1 0 0 1-1 1H5m6 4v5h1.375A1.627 1.627 0 0 0 14 15.375v-1.75A1.627 1.627 0 0 0 12.375 12H11Z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group">
-                        <svg class="text-red-500  dark:text-red-600 group-hover:text-red-300 dark:group-hover:text-red" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
-                        </svg>
-                    </a>
-                </td>
-        </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="w-4 p-4">
-                    
-                </td>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                FRANCISCO LOPEZ
-                </th>
-                <td class="px-6 py-4">
-                    Cambio de Piezas
-                </td>
-                <td class="px-6 py-4">
-                    15-05-2022
-                </td>
-                <td class="px-6 py-4">
-                    $99
-                </td>
-                <td class="flex items-center px-6 py-4">
-                    <a href="Presupuesto/Persona" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
-                        <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
-                        </svg>
-                    </a>
-                    <a href="/src/assets/Documentos/VIAEXPRESS.pdf" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
-                        <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 17v-5h1.5a1.5 1.5 0 1 1 0 3H5m12 2v-5h2m-2 3h2M5 10V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1v6M5 19v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1M10 3v4a1 1 0 0 1-1 1H5m6 4v5h1.375A1.627 1.627 0 0 0 14 15.375v-1.75A1.627 1.627 0 0 0 12.375 12H11Z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group">
-                        <svg class="text-red-500  dark:text-red-600 group-hover:text-red-300 dark:group-hover:text-red" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
-                        </svg>
-                    </a>
-                </td>
-        </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="w-4 p-4">
-                    
-                </td>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                JUAN SANCHEZ
-                </th>
-                <td class="px-6 py-4">
-                    Cambio de tren delantero
-                </td>
-                <td class="px-6 py-4">
-                    20-10-2022
-                </td>
-                <td class="px-6 py-4">
-                    $199
-                </td>
-                <td class="flex items-center px-6 py-4">
-                    <a href="Presupuesto/Persona" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
-                        <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
-                        </svg>
-                    </a>
-                    <a href="/src/assets/Documentos/VIAEXPRESS.pdf" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
-                        <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 17v-5h1.5a1.5 1.5 0 1 1 0 3H5m12 2v-5h2m-2 3h2M5 10V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1v6M5 19v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1M10 3v4a1 1 0 0 1-1 1H5m6 4v5h1.375A1.627 1.627 0 0 0 14 15.375v-1.75A1.627 1.627 0 0 0 12.375 12H11Z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group">
-                        <svg class="text-red-500  dark:text-red-600 group-hover:text-red-300 dark:group-hover:text-red" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
-                        </svg>
-                    </a>
-                </td>
-        </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="w-4 p-4">
-                    
-                </td>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                MANUEL GONZALEZ
-                </th>
-                <td class="px-6 py-4">
-                    Cambio de amortiguación
-                </td>
-                <td class="px-6 py-4">
-                    20-03-2023
-                </td>
-                <td class="px-6 py-4">
-                    $2999
-                </td>
-                <td class="flex items-center px-6 py-4">
-                    <a href="Presupuesto/Persona" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
-                        <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
-                        </svg>
-                    </a>
-                    <a href="" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
-                        <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 17v-5h1.5a1.5 1.5 0 1 1 0 3H5m12 2v-5h2m-2 3h2M5 10V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1v6M5 19v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1M10 3v4a1 1 0 0 1-1 1H5m6 4v5h1.375A1.627 1.627 0 0 0 14 15.375v-1.75A1.627 1.627 0 0 0 12.375 12H11Z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group">
-                        <svg class="text-red-500  dark:text-red-600 group-hover:text-red-300 dark:group-hover:text-red" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
-                        </svg>
-                    </a>
-                </td>
-        </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="w-4 p-4">
-                    
-                </td>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                ANGEL MORENO
-                </th>
-                <td class="px-6 py-4">
-                Sistema de embrague
-                </td>
-                <td class="px-6 py-4">
-                    20-12-2023
-                </td>
-                <td class="px-6 py-4">
-                    $399
-                </td>
-                <td class="flex items-center px-6 py-4">
-                    <a href="Presupuesto/Persona" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
-                        <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
-                        </svg>
-                    </a>
-                    <a href="" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
-                        <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 17v-5h1.5a1.5 1.5 0 1 1 0 3H5m12 2v-5h2m-2 3h2M5 10V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1v6M5 19v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1M10 3v4a1 1 0 0 1-1 1H5m6 4v5h1.375A1.627 1.627 0 0 0 14 15.375v-1.75A1.627 1.627 0 0 0 12.375 12H11Z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group">
-                        <svg class="text-red-500  dark:text-red-600 group-hover:text-red-300 dark:group-hover:text-red" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
-                        </svg>
-                    </a>
-                </td>
-        </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="w-4 p-4">
-                    
-                </td>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                JAVIER PEREZ
-                </th>
-                <td class="px-6 py-4">
-                    Pintura Parachoque
-                </td>
-                <td class="px-6 py-4">
-                    05-01-2024
-                </td>
-                <td class="px-6 py-4">
-                    $699
-                </td>
-                <td class="flex items-center px-6 py-4">
-                    <a href="Presupuesto/Persona" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
-                        <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
-                        </svg>
-                    </a>
-                    <a href="" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
-                        <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 17v-5h1.5a1.5 1.5 0 1 1 0 3H5m12 2v-5h2m-2 3h2M5 10V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1v6M5 19v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1M10 3v4a1 1 0 0 1-1 1H5m6 4v5h1.375A1.627 1.627 0 0 0 14 15.375v-1.75A1.627 1.627 0 0 0 12.375 12H11Z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group">
-                        <svg class="text-red-500  dark:text-red-600 group-hover:text-red-300 dark:group-hover:text-red" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
-                        </svg>
-                    </a>
-                </td>
-        </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="w-4 p-4">
-                
-                </td>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                ANA NAVARRO
-                </th>
-                <td class="px-6 py-4">
-                    Problema de alternador
-                </td>
-                <td class="px-6 py-4">
-                    08-09-2024
-                </td>
-                <td class="px-6 py-4">
-                    $99
-                </td>
-                <td class="flex items-center px-6 py-4">
-                    <a href="Presupuesto/Persona" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
-                        <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
-                        </svg>
-                    </a>
-                    <a href="" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
-                        <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 17v-5h1.5a1.5 1.5 0 1 1 0 3H5m12 2v-5h2m-2 3h2M5 10V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1v6M5 19v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1M10 3v4a1 1 0 0 1-1 1H5m6 4v5h1.375A1.627 1.627 0 0 0 14 15.375v-1.75A1.627 1.627 0 0 0 12.375 12H11Z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group">
-                        <svg class="text-red-500  dark:text-red-600 group-hover:text-red-300 dark:group-hover:text-red" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
-                        </svg>
-                    </a>
-                </td>
-        </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="w-4 p-4">
-                    
-                </td>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                MARIA ISABEL RUIZ
-                </th>
-                <td class="px-6 py-4">
-                    Cambio de neumaticos
-                </td>
-                <td class="px-6 py-4">
-                    10-10-2024
-                </td>
-                <td class="px-6 py-4">
-                    $79
-                </td>
-                <td class="flex items-center px-6 py-4">
-                    <a href="Presupuesto/Persona" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
-                        <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
-                        </svg>
-                    </a>
-                    <a href="" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
-                        <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 17v-5h1.5a1.5 1.5 0 1 1 0 3H5m12 2v-5h2m-2 3h2M5 10V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1v6M5 19v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1M10 3v4a1 1 0 0 1-1 1H5m6 4v5h1.375A1.627 1.627 0 0 0 14 15.375v-1.75A1.627 1.627 0 0 0 12.375 12H11Z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group">
-                        <svg class="text-red-500  dark:text-red-600 group-hover:text-red-300 dark:group-hover:text-red" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
-                        </svg>
-                    </a>
-                </td>
-        </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="w-4 p-4">
-                    
-                </td>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                ALEJANDRO SERRANO
-                </th>
-                <td class="px-6 py-4">
-                    Correa de distribución
-                </td>
-                <td class="px-6 py-4">
-                    08-11-2024
-                </td>
-                <td class="px-6 py-4">
-                    $29
-                </td>
-                <td class="flex items-center px-6 py-4">
-                    <a href="Presupuesto/Persona" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
-                        <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
-                        </svg>
-                    </a>
-                    <a href="" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group" >
-                        <svg class="text-gray-500  dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 17v-5h1.5a1.5 1.5 0 1 1 0 3H5m12 2v-5h2m-2 3h2M5 10V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1v6M5 19v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1M10 3v4a1 1 0 0 1-1 1H5m6 4v5h1.375A1.627 1.627 0 0 0 14 15.375v-1.75A1.627 1.627 0 0 0 12.375 12H11Z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 group">
-                        <svg class="text-red-500  dark:text-red-600 group-hover:text-red-300 dark:group-hover:text-red" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
-                        </svg>
-                    </a>
-                </td>
-        </tr>
+
         </tbody>
     </table>
     <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4 pb-4 bg-white dark:bg-gray-900" aria-label="Table navigation">
@@ -446,7 +141,7 @@
     </nav>
 </div>
 
-
+<!-- 
 <div id="popup-modal-eliminar" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-md max-h-full">
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -480,4 +175,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
