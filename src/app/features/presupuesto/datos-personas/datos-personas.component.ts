@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NacionalidadService } from '../../../core/services/nacionalidad.service';
 import { Comuna } from '../../../core/models/direccionModel/comuna.model';
-import { debounceTime, distinctUntilChanged, switchMap, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, of, Subject } from 'rxjs';
 import { UsuarioService } from '../../../core/services/usuario.service';
 import { Usuario } from '../../../core/models/usuarioModel/usuario.model';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-datos-personas',
@@ -13,7 +14,8 @@ import { Usuario } from '../../../core/models/usuarioModel/usuario.model';
   imports: [
           FormsModule,
           CommonModule,
-          ReactiveFormsModule
+          ReactiveFormsModule,
+          NgSelectModule
         ],
   templateUrl: './datos-personas.component.html',
   styleUrl: './datos-personas.component.css'
@@ -21,25 +23,35 @@ import { Usuario } from '../../../core/models/usuarioModel/usuario.model';
 export class DatosPersonasComponent implements OnInit{
 
   comunaSelect:Comuna[] = [];
+  usuarioRecepcionistaSelect:Usuario[] = [];
   regionSelect: any = null;
   regionSelectId: string = '';
+  // usuarioCliente:Usuario;
+  // usuarioSeleccionado: any = null;
+  // search$ = new Subject<string>();
+  // usuarios: any[] = [];
+  // cargando = false;
 
-  busquedaControl = new FormControl('');
-  resultados: any;
-  resultadosRut: Usuario[] = [];
+  //Inputs
+  usuarioRecepcionista:Usuario= {
+    Rut: null,
+    Apellido: '',
+    Email: '',
+    Nombre: '',
+    IdVeUsuario: 0,
+    Celular: 0,
+    IdVeComuna: 0,
+    IdVeRegion: 0,
+    IdVeTipoUsuario: 0
+  };
 
-  constructor(private nacionalidadService: NacionalidadService, private usuarioService: UsuarioService) {
-    this.busquedaControl.valueChanges.pipe(
-      debounceTime(300),                 // espera 300ms sin escribir
-      distinctUntilChanged(),            // evita búsquedas repetidas
-      switchMap(valor => this.BuscarRut(valor)) // usa tu servicio real aquí
-    ).subscribe(res => {
-      this.resultados = res;
-    });
+  constructor(private nacionalidadService: NacionalidadService, private usuarioService: UsuarioService, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
     this.ObtenerComunas();
+    this.ObtenerUsuarios();
+    // this.inicializarBusqueda();
   }
 
   async setRegion(event: Event)
@@ -61,18 +73,80 @@ export class DatosPersonasComponent implements OnInit{
   }
 
   async ObtenerComunas(){
-    this.comunaSelect = await this.nacionalidadService.obtenerComunas();
+    
+    const comunasApi = await this.nacionalidadService.obtenerComunas() as Comuna[];
+    console.log(comunasApi);
+    this.comunaSelect = comunasApi;
   }
-
-  async BuscarRut(valor: any)
+  
+  async ObtenerUsuarios()
   {
-    if (!valor) return of([]);
+    const usuariosApi = await this.usuarioService.obtenerUsuarios() as Usuario[];
 
-    this.resultadosRut = await this.usuarioService.obtenerUsuarioRut(valor);
-    // const filtro = this.usuarioCliente.filter(x => x.toLowerCase().includes(valor.toLowerCase()));
-
-    console.log(this.resultadosRut);
-    return of(this.resultadosRut);    
+    this.usuarioRecepcionistaSelect = usuariosApi;
+    console.log(this.usuarioRecepcionistaSelect)
   }
 
+  setUsuario(event: Event)
+  {
+    const selectElement = event.target as HTMLSelectElement;
+    const usuarioSelect = selectElement.value as unknown as number;
+    
+    if (!usuarioSelect)
+      this.usuarioRecepcionista = new Usuario();      
+    else
+      this.usuarioRecepcionista = this.usuarioRecepcionistaSelect.filter(usuarioFiltro => usuarioFiltro.IdVeUsuario == usuarioSelect)[0];
+  }
+  
+
+  // inicializarBusqueda() {
+  //   this.search$
+  //     .pipe(
+  //       debounceTime(400),
+  //       distinctUntilChanged(),
+  //       switchMap(async valor => {
+  //         console.log("rut a buscar "+valor);
+  //         if(valor !== null && valor !== undefined && valor !== '')
+  //         {
+  //           if (valor!.length >= 3) {
+  //             this.cargando = true;
+  //             const usuariosApi = await this.usuarioService.obtenerUsuarioRut(valor);
+  //             return usuariosApi;
+  //           }
+  //         }
+  //         return [];
+  //       })
+  //     )
+  //     .subscribe((usuariosApi: any) => {        
+  //       this.usuarios = usuariosApi;
+  //       this.cargando = false;
+  //     });
+  // }
+
+  // onSearch(termino: any) {
+  //   if (termino && termino.length >= 3) {
+  //     this.search$.next(termino);
+  //   }
+  // }
+
+  // onBlur() {
+  //   const inputElement = document.querySelector('ng-select input') as HTMLInputElement | null;
+  //   if (!inputElement) {
+  //     if(!inputElement!.value.trim())
+  //     {
+  //       this.usuarioSeleccionado = null;
+  //       this.usuarios = [];
+  //     }
+  //   }
+  // }
+  
+
+  // seleccionarUsuario(usuario: any) {
+    
+  //   if (usuario) {
+  //     console.log('Usuario seleccionado:', usuario);
+  //     this.usuarioRecepcionista = usuario;
+  //     this.cdr.detectChanges();
+  //   }   
+  // }
 }

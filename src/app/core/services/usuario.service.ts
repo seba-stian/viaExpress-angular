@@ -14,6 +14,26 @@ export class UsuarioService {
     
         constructor(private httpClient: HttpClient, private utilsService: UtilsService) {}
     
+        async obtenerUsuarios() {
+            const url = this.urlApi + `/api/Usuario/ObtenerUsuarios`;
+        
+            // const headers = new HttpHeaders({
+            //     'Content-Type': 'application/json',
+            //     Authorization: `Bearer ${token}`,
+            // });
+        
+            try {                
+                const resp = await firstValueFrom(
+                    this.httpClient.get<Array<Usuario>>(url)
+                );
+    
+                return resp;
+            } catch (error: any) {
+                //guardar log en archivo o BD y retornar valor para no botar la app
+                console.log(this.utilsService.obtenerErrorGenerico(error));
+                return new Usuario();
+            }
+        }
     
         async obtenerUsuarioRut(rut:string) {
             const url = this.urlApi + `/api/Usuario/ObtenerUsuarioRut?rutCliente=${rut}`;
@@ -30,7 +50,9 @@ export class UsuarioService {
     
                 return resp;
             } catch (error: any) {
-                return this.utilsService.obtenerErrorGenerico(error);
+                //guardar log en archivo o BD y retornar valor para no botar la app
+                console.log(this.utilsService.obtenerErrorGenerico(error));
+                return new Usuario();
             }
         }
 }

@@ -1,0 +1,54 @@
+
+.ng-select-bottom{
+    position: relative !important;
+    justify-content: center !important;      /* Centra horizontalmente */
+    align-items: center;          /* Centra verticalmente */
+    height: 40px;                 /* Ajusta según necesidad */
+    color: white;                 /* Color del texto */
+    font-size: 14px;
+    text-align: center;
+}
+
+:host ::ng-deep .ng-dropdown-panel{
+    position: relative !important;
+    box-sizing: border-box;
+    opacity: 0;
+    width: 100%;
+    z-index: 1050;
+    -webkit-overflow-scrolling: touch;
+}
+/* :host ::ng-deep .ng-dropdown-panel-items{
+    margin-top: 4%;
+    background-color: #1f2937;
+} */
+
+:host ::ng-deep .ng-dropdown-panel-items {
+    margin-top: 4%;
+    background-color: #1f2937; /* dark:bg-gray-800 */
+    border-bottom: 1px solid #374151; /* dark:border-gray-700 */
+    transition: background-color 0.2s ease;
+    /* border: 1px solid white; */
+  }
+  
+  :host ::ng-deep .ng-dropdown-panel-items .ng-option {
+    background-color: #2f3a4a; /* bg-white por defecto */
+    border-bottom: 1px solid #e5e7eb; /* border-gray-200 aprox */
+    padding: 2%;
+  }
+  
+  :host ::ng-deep .ng-dropdown-panel-items .ng-option:hover {
+    background-color: #f9fafb; /* hover:bg-gray-50 */
+  }
+  
+  /* Dark mode estilos */
+  @media (prefers-color-scheme: dark) {
+    :host ::ng-deep .ng-dropdown-panel-items {
+      background-color: #1f2937; /* dark:bg-gray-800 */
+      border-bottom: 1px solid #374151; /* dark:border-gray-700 */
+    }
+  
+    :host ::ng-deep .ng-dropdown-panel-items .ng-option:hover {
+      background-color: #4b5563; /* dark:hover:bg-gray-600 */
+    }
+  }
+  

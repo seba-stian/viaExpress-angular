@@ -1,24 +1,24 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { firstValueFrom } from "rxjs";
-import { Presupuesto } from "../models/presupuestoModel/presupuesto.model";
-import { UtilsService } from "./utils.service";
 import { environment } from "../../../environments/environment";
-import { Comuna } from "../models/direccionModel/comuna.model";
-import { Region } from "../models/direccionModel/region.model";
+import { Usuario } from "../models/usuarioModel/usuario.model";
+import { UtilsService } from "./utils.service";
+import { MarcaVehiculo } from "../models/vehiculoModel/marcaVehiculo.model";
+import { ModeloVehiculo } from "../models/vehiculoModel/modeloVehiculo.model";
 
 @Injectable({
     providedIn: 'root',
 })
 
-export class NacionalidadService {
-    urlApi = environment.apiAccesoViaExpress;
+export class VehiculoService {
 
+    urlApi = environment.apiAccesoViaExpress;
+    
     constructor(private httpClient: HttpClient, private utilsService: UtilsService) {}
 
-
-    async obtenerComunas() {
-        const url = this.urlApi + `/api/Nacionalidad/ObtenerComuna`;
+    async obtenerMarcas() {
+        const url = this.urlApi + `/api/Vehiculo/ObtenerMarcas`;
     
         // const headers = new HttpHeaders({
         //     'Content-Type': 'application/json',
@@ -27,31 +27,35 @@ export class NacionalidadService {
     
         try {                
             const resp = await firstValueFrom(
-                this.httpClient.get<Array<Comuna>>(url)
+                this.httpClient.get<Array<MarcaVehiculo>>(url)
             );
 
             return resp;
         } catch (error: any) {
             //guardar log en archivo o BD y retornar valor para no botar la app
             console.log(this.utilsService.obtenerErrorGenerico(error));
-            return new Comuna();
+            return new MarcaVehiculo();
         }
     }
 
-    async obtenerRegion(idRegion: number)
-    {
-        const url = this.urlApi + `/api/Nacionalidad/ObtenerRegionPorId?idRegion=${idRegion}`;
-
+    async obtenerModelos(idMarca: number) {
+        const url = this.urlApi + `/api/Vehiculo/ObtenerModelosPorMarca?idMarca=${idMarca}`;
+    
+        // const headers = new HttpHeaders({
+        //     'Content-Type': 'application/json',
+        //     Authorization: `Bearer ${token}`,
+        // });
+    
         try {                
             const resp = await firstValueFrom(
-                this.httpClient.get<Region>(url)
+                this.httpClient.get<Array<ModeloVehiculo>>(url)
             );
 
             return resp;
         } catch (error: any) {
             //guardar log en archivo o BD y retornar valor para no botar la app
             console.log(this.utilsService.obtenerErrorGenerico(error));
-            return new Region();
+            return new ModeloVehiculo();
         }
     }
 }

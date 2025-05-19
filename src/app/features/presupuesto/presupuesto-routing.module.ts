@@ -18,7 +18,7 @@ const routes: Routes = [
             { path: '', redirectTo: 'Persona', pathMatch: 'full' },
             { path: 'Persona', component: DatosPersonasComponent },
             { path: 'Vehiculo', component: DatosVehiculosComponent },
-            { path: 'Producto', component: ListaProductosComponent }
+            { path: 'Productos', component: ListaProductosComponent }
           ]
         }
       ]
