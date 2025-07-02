@@ -17,7 +17,6 @@ import { FooterComponent } from './footer/footer.component';
           NavbarComponent,
           MenuComponent,
           HomeComponent,
-          FooterComponent
         ],
   templateUrl: './dashboard.component.html',
 })

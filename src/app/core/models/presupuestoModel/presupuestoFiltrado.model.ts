@@ -4,4 +4,5 @@ export class PresupuestoFiltrado{
     NombrePresupuesto?: string;
     FechaCreacion: string;
     TotalPresupuesto: number;
+    totalfilas:number;
 }

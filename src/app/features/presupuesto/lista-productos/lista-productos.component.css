@@ -1,0 +1,36 @@
+:host ::ng-deep .p-autocomplete-input {
+    width: 100% !important;
+}
+
+:host ::ng-deep .p-component {
+    min-width: 600px;
+}
+
+@media (max-width: 640px) {
+    :host ::ng-deep .p-component {
+        min-width: 235px; /* Escritorio (o pantallas medianas hacia arriba)*/
+    }
+}
+
+/* ::ng-deep .p-autocomplete-option {
+    min-width: 600px;
+}  */
+
+/* Estilo para el contenedor de la lista desplegable */
+::ng-deep .p-autocomplete-overlay {
+    margin-left: -13px;
+    margin-top: 10px;
+}
+
+/* Estilo para cada ítem */
+/* :host ::ng-deep .p-autocomplete-option {
+    min-width: 340px;
+    margin-top: 10px;
+} */
+
+/* :host ::ng-deep .p-overlay .p-component .ng-star-inserted {
+    margin-top: 3px;
+    background-color: #374151;
+} */
+
+

@@ -1,0 +1,8 @@
+<div *ngIf="mostrar" class="p-4 mb-4 text-sm rounded-lg"
+    [ngClass]="{
+        'text-red-800 bg-red-100': tipo === 'error',
+        'text-yellow-800 bg-yellow-100': tipo === 'warning',
+        'text-green-800 bg-green-100': tipo === 'success'
+    }">
+    <span class="font-medium">{{ titulo }}:</span> {{ mensaje }}
+</div>

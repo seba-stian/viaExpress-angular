@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { InputIcon } from 'primeng/inputicon';
 
 @Component({
   selector: 'app-footer',
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class FooterComponent implements OnInit{
 
+  @Input() cantidadRegistros: number = 0;
   ngOnInit(): void {
 
   }

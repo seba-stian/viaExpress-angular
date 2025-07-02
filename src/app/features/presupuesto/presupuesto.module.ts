@@ -6,12 +6,11 @@ import { ProductoCarruselComponent } from './lista-productos/producto-carrusel/p
 
 
 @NgModule({
-  declarations: [
-    ProductoCarruselComponent
-  ],
+  declarations: [],
   imports: [
     CommonModule,
-    PresupuestoRoutingModule
+    PresupuestoRoutingModule,
+    ProductoCarruselComponent
   ]
 })
 export class PresupuestoModule { }

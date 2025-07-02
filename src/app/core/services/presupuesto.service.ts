@@ -45,9 +45,9 @@ export class PresupuestoService {
     }
 
     async obtenerPresupuestoFiltrado(
+        Pagina: number, 
+        Tamanio: number,
         NombrePresupuesto?: string, 
-        Pagina?: string, 
-        Tamanio?: string,
         Orden?: string, 
         AscDesc?: string) {
         let url = this.urlApi;

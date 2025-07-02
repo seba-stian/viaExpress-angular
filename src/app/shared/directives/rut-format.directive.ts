@@ -1,23 +1,27 @@
 import { Directive, HostListener } from '@angular/core';
+import { NgControl } from '@angular/forms';
 
 @Directive({
-  selector: '[appRutFormat]',
-  standalone: false
+  selector: '[appRutFormat]'
 })
 export class RutFormatDirective {
-  @HostListener('input', ['$event'])
-  onInput(event: any) {
-    let inputVal = event.target.value;
-    inputVal = inputVal.replace(/[^\dkK]/g, '');
 
-    let rutNum = inputVal.slice(0, -1);
-    let rutDv = inputVal.slice(-1);
+  constructor(private control: NgControl) {}
 
-    if (rutNum || rutDv) {
-      rutNum = rutNum.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-      event.target.value = rutNum + '-' + rutDv;
-    } else {
-      event.target.value = '';
-    }
+  @HostListener('input', ['$event.target.value'])
+  onInput(value: string) {
+    const cleanValue = value.replace(/[^\dkK]/gi, '').toUpperCase();
+    const formattedRut = this.formatRut(cleanValue);
+    this.control.control?.setValue(formattedRut, { emitEvent: false });
+  }
+
+  private formatRut(rut: string): string {
+    if (!rut || rut.length < 2) return rut;
+
+    const body = rut.slice(0, -1).replace(/\D/g, '');
+    const dv = rut.slice(-1);
+    const reversed = body.split('').reverse().join('');
+    const withDots = reversed.replace(/(\d{3})(?=\d)/g, '$1.').split('').reverse().join('');
+    return `${withDots}-${dv}`;
   }
 }

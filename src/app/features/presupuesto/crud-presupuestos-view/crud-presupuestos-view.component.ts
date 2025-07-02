@@ -1,8 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { CommonModule } from '@angular/common';
+import { DatosPersonasComponent } from '../datos-personas/datos-personas.component';
+import { PresupuestoFormService } from '../../../core/services/formPresupuesto.service';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-crud-presupuestos-view',
@@ -17,6 +20,10 @@ import { CommonModule } from '@angular/common';
 })
 export class CrudPresupuestosViewComponent implements OnInit{
 
+  private esperandoValidacionCliente = false;
+  private esperandoValidacionRecepcionista = false;
+  private esperandoValidacionVehiculo = false;
+  // @ViewChild(DatosPersonasComponent) hijo!: DatosPersonasComponent;
   mostrarBoton:boolean = true;
   mostrarBotonSiguiente:boolean = true;
   mostrarBotonFinal:boolean = false;
@@ -25,18 +32,78 @@ export class CrudPresupuestosViewComponent implements OnInit{
   selectStepperProductos:boolean = false;
   selectStepperFinal:boolean = false;
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private formService: PresupuestoFormService){}
 
   ngOnInit(): void {
     initFlowbite();
 
-    if(this.router.url == '/Presupuesto/Persona')
-    {
-      this.mostrarBoton = false;
-      this.resetStepper();
-      this.selectStepperPersona = true;
-      console.log('stepper persona');
-    }
+    // Suscribirse una sola vez
+    combineLatest([
+      this.formService.formClienteValido$,
+      this.formService.formRecepcionistaValido$
+    ]).subscribe(([esValido, esValidoR]) => {
+      console.log('Validación del formulario cliente:', esValido);
+      console.log('Validación del formulario recepcionista:', esValidoR);
+    
+      if (this.esperandoValidacionCliente && this.esperandoValidacionRecepcionista) {
+        this.esperandoValidacionCliente = false;
+        this.esperandoValidacionRecepcionista = false;
+    
+        if (!esValido || !esValidoR) {
+          console.warn('Formulario padre cliente y recepcionista inválido');
+          return;
+        }
+    
+        // Continuar flujo si el formulario es válido
+        this.mostrarBoton = true;
+        this.resetStepper();
+        this.selectStepperVehiculo = true;
+        this.router.navigate(['Presupuesto/Vehiculo']);
+      }
+    });
+    // this.formService.formClienteValido$.subscribe((esValido) => { 
+    //   console.log('Validación del formulario cliente:', esValido);
+    //   this.formService.formRecepcionistaValido$.subscribe((esValidoR) => {
+    //     console.log('Validación del formulario recepcionista:', esValidoR);
+    //     if (this.esperandoValidacionCliente && this.esperandoValidacionRecepcionista) {
+    //     this.esperandoValidacionCliente = false;
+    //     this.esperandoValidacionRecepcionista = false;
+
+    //     if (!esValido && !esValidoR) {
+    //       console.warn('Formulario padre cliente y recepcionista inválido');
+    //       return;
+    //     }
+
+    //     //Continuar flujo si el formulario es válido
+    //     this.mostrarBoton = true;
+    //     this.resetStepper();
+    //     this.selectStepperVehiculo = true;
+    //     this.router.navigate(['Presupuesto/Vehiculo']);
+    //   }
+
+    //   });
+    // });
+
+    // Suscribirse una sola vez
+    this.formService.formVehiculoValido$.subscribe((esValido) => {
+      console.log('Validando formulario Vehiculo');
+      if (this.esperandoValidacionVehiculo) {
+        this.esperandoValidacionVehiculo = false;
+
+        if (!esValido) {
+          console.warn('Formulario padre cliente y recepcionista inválido');
+          return;
+        }
+        console.log('formulario Vehiculo validado');
+        // if(this.router.url == '/Presupuesto/Persona')
+        // {
+          this.mostrarBoton = true;
+          this.resetStepper();
+          this.selectStepperPersona = true;
+          this.router.navigate(['Presupuesto/Productos']);
+        // }
+      }
+    });
     if(this.router.url == '/Presupuesto/Productos')
       {
         this.mostrarBoton = true;
@@ -48,6 +115,21 @@ export class CrudPresupuestosViewComponent implements OnInit{
       }
   }
 
+  //Ejecuta formularios de recepcionista y cliente del componente datos-personas
+  // enviarAmbosFormularios() {
+  //   if (this.hijo) {
+  //     this.hijo.ejecutarFormRecepcionista();
+  //     this.hijo.ejecutarFormCliente();
+  //   } else {
+  //     console.warn('El componente hijo no está disponible en el DOM');
+  //   }
+  // }
+
+  // enviarAmbosFormularios() {
+  //   this.formService.solicitarEjecutarFormCliente();
+  //   this.formService.solicitarEjecutarFormRecepcionista();
+  // }
+  
   private resetStepper()
   {
     this.selectStepperPersona = false;
@@ -81,22 +163,25 @@ export class CrudPresupuestosViewComponent implements OnInit{
   }
   continuar()
   {
-    console.log(this.router.url)
     if(this.router.url == '/Presupuesto/Persona')
       {
-        this.mostrarBoton = true;
-        this.resetStepper();
-        this.selectStepperVehiculo = true;
-        this.router.navigate(['Presupuesto/Vehiculo']);
+        this.esperandoValidacionCliente = true;
+        this.esperandoValidacionRecepcionista = true;
+        this.formService.solicitarEjecutarFormCliente(); // Esto ejecuta la validación en el hijo
+        this.formService.solicitarEjecutarFormRecepcionista(); // Esto ejecuta la validación en el hijo        
+        return; // Detenemos el flujo aquí y esperamos el resultado de validación
       }
     if(this.router.url == '/Presupuesto/Vehiculo')
       {
-        this.mostrarBoton = true;
-        this.mostrarBotonSiguiente = false;
-        this.mostrarBotonFinal = true;
-        this.resetStepper();
-        this.selectStepperProductos = true;
-        this.router.navigate(['Presupuesto/Productos']);
+        this.esperandoValidacionVehiculo = true;
+        this.formService.solicitarEjecutarFormVehiculo(); // Esto ejecuta la validación en el hijo
+        return; // Detenemos el flujo aquí y esperamos el resultado de validación
+        // this.mostrarBoton = true;
+        // this.mostrarBotonSiguiente = false;
+        // this.mostrarBotonFinal = true;
+        // this.resetStepper();
+        // this.selectStepperProductos = true;
+        // this.router.navigate(['Presupuesto/Productos']);
       }
   }  
 }

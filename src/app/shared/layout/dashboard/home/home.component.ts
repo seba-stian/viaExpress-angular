@@ -4,6 +4,7 @@ import { filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RutaNav } from '../../../../core/models/RutaNav.model';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ import { RutaNav } from '../../../../core/models/RutaNav.model';
       FormsModule,
       CommonModule ,
       RouterOutlet,
-      RouterModule
+      RouterModule,
+      FooterComponent
     ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'

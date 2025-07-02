@@ -1,0 +1,6 @@
+<div *ngIf="mostrarToast"
+    [ngClass]="toastClases"
+    class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 max-w-sm w-full text-sm rounded-lg shadow-lg p-4 flex items-center space-x-4 transition-opacity duration-500">
+    <div [innerHTML]="toastIcon"></div>
+    <span>{{ toastMensaje }}</span>
+</div>
